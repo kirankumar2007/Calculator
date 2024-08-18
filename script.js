@@ -6,6 +6,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const notationMode = document.getElementById('notation-mode');
     const buttons = document.querySelectorAll('button');
     const themeToggle = document.getElementById('theme-toggle');
+    const historyList = document.getElementById('history-list');
+    const clearHistoryBtn = document.getElementById('clear-history');
+    const unitFrom = document.getElementById('unit-from');
+    const unitTo = document.getElementById('unit-to');
+    const unitValue = document.getElementById('unit-value');
+    const convertUnitBtn = document.getElementById('convert-unit');
+    const conversionResult = document.getElementById('conversion-result');
+    const constantSelect = document.getElementById('constant-select');
+    const insertConstantBtn = document.getElementById('insert-constant');
+    const equationInput = document.getElementById('equation-input');
+    const solveEquationBtn = document.getElementById('solve-equation');
+    const equationSolution = document.getElementById('equation-solution');
 
     let currentValue = '';
     let operator = '';
@@ -54,6 +66,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     themeToggle.addEventListener('click', toggleTheme);
+    clearHistoryBtn.addEventListener('click', clearHistory);
+    convertUnitBtn.addEventListener('click', convertUnit);
+    insertConstantBtn.addEventListener('click', insertConstant);
+    solveEquationBtn.addEventListener('click', solveEquation);
 
     function handleButtonClick(button) {
         const action = button.dataset.action;
@@ -145,6 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
             lastResult = currentValue;
             operator = '';
             previousValue = '';
+            addToHistory(`${history.textContent}`);
         } catch (error) {
             currentValue = 'Error';
         }
@@ -246,6 +263,71 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function toggleTheme() {
         document.body.classList.toggle('dark-theme');
+    }
+
+    function addToHistory(calculation) {
+        const li = document.createElement('li');
+        li.textContent = calculation;
+        historyList.appendChild(li);
+    }
+
+    function clearHistory() {
+        historyList.innerHTML = '';
+    }
+
+    function convertUnit() {
+        const value = parseFloat(unitValue.value);
+        const from = unitFrom.value;
+        const to = unitTo.value;
+        let result;
+
+        const conversionFactors = {
+            m: 1,
+            ft: 0.3048,
+            km: 1000,
+            mi: 1609.34
+        };
+
+        result = value * conversionFactors[from] / conversionFactors[to];
+        conversionResult.textContent = `${value} ${from} = ${result.toFixed(4)} ${to}`;
+    }
+
+    function insertConstant() {
+        const constants = {
+            g: 9.81,
+            c: 299792458,
+            h: 6.62607015e-34,
+            Na: 6.02214076e23
+        };
+        const selectedConstant = constantSelect.value;
+        currentValue = constants[selectedConstant].toString();
+        updateDisplay();
+    }
+
+    function solveEquation() {
+        const equation = equationInput.value;
+        let solution;
+
+        try {
+            // This is a very simple equation solver for linear equations
+            // For more complex equations, you'd need a more sophisticated solver
+            const parts = equation.split('=');
+            if (parts.length !== 2) throw new Error('Invalid equation format');
+
+            const left = parts[0].trim();
+            const right = parts[1].trim();
+
+            const x = left.indexOf('x');
+            if (x === -1) throw new Error('No variable x found');
+
+            const a = parseFloat(left.substring(0, x)) || 1;
+            const b = parseFloat(right) || 0;
+
+            solution = b / a;
+            equationSolution.textContent = `x = ${solution}`;
+        } catch (error) {
+            equationSolution.textContent = 'Error: ' + error.message;
+        }
     }
 
     // Keyboard support

@@ -21,7 +21,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 120vh;
+    min-height: 130vh;
     margin: 0;
     background-color: var(--bg-color);
     font-family: Arial, sans-serif;
@@ -29,7 +29,7 @@ body {
 }
 
 .calculator {
-    margin-top: 30px;
+    margin-top: 20px;
     background-color: var(--calculator-bg);
     border-radius: 10px;
     padding: 20px;
@@ -146,6 +146,42 @@ button:active {
     color: white;
 }
 
+.unit-converter, .constants-library, .equation-solver, .history-log {
+    background-color: var(--display-bg);
+    border-radius: 5px;
+    margin-top: 15px;
+    padding: 10px;
+    box-shadow: 0 2px 5px var(--shadow-color);
+}
+
+.unit-converter select, .unit-converter input, .constants-library select, .equation-solver input {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.unit-converter button, .constants-library button, .equation-solver button, .history-log button {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--function-bg);
+    color: var(--function-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#history-list {
+    list-style-type: none;
+    padding: 0;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+#history-list li {
+    padding: 5px 0;
+    border-bottom: 1px solid var(--shadow-color);
+}
+
 /* Dark theme */
 body.dark-theme {
     --bg-color: #121212;
@@ -167,15 +203,15 @@ body.dark-theme {
         width: 100%;
         max-width: 400px;
     }
-    
+   
     .buttons {
         grid-template-columns: repeat(4, 1fr);
     }
-    
+   
     .additional-controls {
         grid-template-columns: repeat(2, 1fr);
     }
-    
+   
     #theme-toggle {
         grid-column: span 2;
     }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional Scientific Calculator</title>
+    <title>Advanced Scientific Calculator</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -26,43 +26,43 @@
             <button class="function" data-action="e">e</button>
             <button class="clear" data-action="clear">C</button>
             <button class="clear" data-action="backspace">⌫</button>
-            
+           
             <button class="function" data-action="square">x²</button>
             <button class="function" data-action="cube">x³</button>
             <button class="function" data-action="power">x^y</button>
             <button class="function" data-action="exp">EXP</button>
             <button class="operator" data-action="modulo">mod</button>
-            
+           
             <button class="function" data-action="square-root">√</button>
             <button class="function" data-action="cube-root">³√</button>
             <button class="function" data-action="nth-root">ⁿ√</button>
             <button class="function" data-action="log">log</button>
             <button class="function" data-action="ln">ln</button>
-            
+           
             <button class="function trig" data-action="sin">sin</button>
             <button class="function trig" data-action="cos">cos</button>
             <button class="function trig" data-action="tan">tan</button>
             <button class="memory" data-action="memory-store">MS</button>
             <button class="memory" data-action="memory-recall">MR</button>
-            
+           
             <button class="number">7</button>
             <button class="number">8</button>
             <button class="number">9</button>
             <button class="operator" data-action="divide">/</button>
             <button class="memory" data-action="memory-add">M+</button>
-            
+           
             <button class="number">4</button>
             <button class="number">5</button>
             <button class="number">6</button>
             <button class="operator" data-action="multiply">*</button>
             <button class="memory" data-action="memory-subtract">M-</button>
-            
+           
             <button class="number">1</button>
             <button class="number">2</button>
             <button class="number">3</button>
             <button class="operator" data-action="subtract">-</button>
             <button class="memory" data-action="memory-clear">MC</button>
-            
+           
             <button class="function" data-action="toggle-sign">±</button>
             <button class="number">0</button>
             <button class="decimal">.</button>
@@ -75,6 +75,44 @@
             <button class="function" data-action="factorial">n!</button>
             <button class="function" data-action="percentage">%</button>
             <button id="theme-toggle">Theme</button>
+        </div>
+        <div class="unit-converter">
+            <select id="unit-from">
+                <option value="m">Meters</option>
+                <option value="ft">Feet</option>
+                <option value="km">Kilometers</option>
+                <option value="mi">Miles</option>
+            </select>
+            <input type="number" id="unit-value" placeholder="Enter value">
+            <select id="unit-to">
+                <option value="m">Meters</option>
+                <option value="ft">Feet</option>
+                <option value="km">Kilometers</option>
+                <option value="mi">Miles</option>
+            </select>
+            <button id="convert-unit">Convert</button>
+            <div id="conversion-result"></div>
+        </div>
+        <div class="constants-library">
+            <h3>Constants Library</h3>
+            <select id="constant-select">
+                <option value="g">Gravitational acceleration (g)</option>
+                <option value="c">Speed of light (c)</option>
+                <option value="h">Planck constant (h)</option>
+                <option value="Na">Avogadro's number (Na)</option>
+            </select>
+            <button id="insert-constant">Insert</button>
+        </div>
+        <div class="equation-solver">
+            <h3>Equation Solver</h3>
+            <input type="text" id="equation-input" placeholder="Enter equation (e.g., 2x + 5 = 13)">
+            <button id="solve-equation">Solve</button>
+            <div id="equation-solution"></div>
+        </div>
+        <div class="history-log">
+            <h3>Calculation History</h3>
+            <ul id="history-list"></ul>
+            <button id="clear-history">Clear History</button>
         </div>
     </div>
     <script src="script.js"></script>
