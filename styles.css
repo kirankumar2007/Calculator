@@ -12,19 +12,34 @@ body {
     background-color: #333;
     border-radius: 10px;
     padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    width: 320px;
+}
+
+.display-container {
+    background-color: #222;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    padding: 10px;
+}
+
+#history {
+    color: #888;
+    font-size: 14px;
+    text-align: right;
+    min-height: 20px;
+    margin-bottom: 5px;
 }
 
 #display {
     width: 100%;
     height: 60px;
-    font-size: 24px;
+    font-size: 28px;
     text-align: right;
-    margin-bottom: 10px;
-    padding: 5px;
-    background-color: #eee;
+    background-color: transparent;
+    color: #fff;
     border: none;
-    border-radius: 5px;
+    outline: none;
 }
 
 .buttons {
@@ -39,7 +54,7 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.3s;
 }
 
 .number, .decimal {
@@ -52,6 +67,11 @@ button {
     color: white;
 }
 
+.function {
+    background-color: #FF9800;
+    color: white;
+}
+
 .clear {
     background-color: #f44336;
     color: white;
@@ -59,4 +79,16 @@ button {
 
 button:hover {
     opacity: 0.8;
+    transform: scale(1.05);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+@media (max-width: 480px) {
+    .calculator {
+        width: 100%;
+        max-width: 320px;
+    }
 }
